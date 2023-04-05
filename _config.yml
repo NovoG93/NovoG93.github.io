@@ -16,17 +16,17 @@ url                      : https://NovoG93.github.io # the base hostname & proto
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "NovoG93/NovoG93.github.io"
 
+
 # Site Author
 author:
-  name             : "Your Sidebar Name"
-  avatar           : "profile.png"
-  bio              : "Your biography for the left-hand sidebar"
-  location         : "Location"
+  name             : "Georg Adrian Novotny"
+  avatar           : "Novotny.jpeg"
+  bio              : "Georg Novotny is a part-time lecturer at UAS Technikum Vienna, where he teaches mobile robotics and is actively involved in the development of search and rescue robots. Alongside his work at UAS, he works as a platform engineer at MIC-Cust. Georg is also currently pursuing his PhD at JKU, where he is focused on system identification and parameter estimation of vehicles and robots. With his expertise in robotics and engineering, Georg is dedicated to advancing the field of autonomous systems and developing cutting-edge technologies that improve our lives."
+  location         : "Vienna"
   employer         :
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  googlescholar    : "http://yourfullgooglescholarurl.com"
+  googlescholar    : "https://scholar.google.de/citations?user=ICKy-zgAAAAJ&hl=de&oi=sra"
   email            :
-  researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
+  researchgate     : "https://www.researchgate.net/profile/Georg-Novotny"
   uri              :
   bitbucket        :
   codepen          :
@@ -34,26 +34,25 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "academicpages"
+  github           : "NovoG93"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
   linkedin         :
-  orcid            : "http://orcid.org/yourorcidurl"
+  orcid            : "https://orcid.org/0000-0001-8990-2622"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "replacethistwitterhandle"
+  twitter          : #"replacethistwitterhandle"
   vine             :
   weibo            :
   xing             :
   youtube          :
   wikipedia        :
-
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
@@ -121,6 +120,7 @@ analytics:
   provider               :  "false" # false (default), "google", "google-universal", "google-analytics-4", "custom"
   google:
     tracking_id          :
+
 
 
 

@@ -11,35 +11,53 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* B.S. in Mechatronics & Robotics, UAS Technikum Vienna, 2016
+* M.S. in Mechatronics & Robotics with focus on Mobile Robotics, UAS Technikum Vienna, 2018
+* Ph.D in System Identification & Parameter Estimation for Autonomous , GitHub University, 2024 (expected)
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Sep 2018 - Current: Researcher / Lecturer - UAS Technikum Vienna
+  * Collaboration on projects:
+    * Autonomous Land Systems
+      * Implementing/developing software modules for a Search and Rescue robot
+      * Containerization of software modules
+      * System maintenance
+    * Engineering Goes International (ENGINE)
+      * Software development
+    * IoCESST (Internationalization of the Curricula in Engineering, Environmental, Smart Cities and Sport Technologies)
+      * Development of the curriculum of the Mobile Robotics Lecture
+      * Lectures in Mobile Robotics
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Oct 2022 - Mai 2023: Software Engineer - Ebe Mobility & Green Energy GmbH
+  * Implementation Self-Hosted Gitlab Instance
+    * Gitlab CI/CD based on self-hosted Docker container
+    * Gitlab - Openproject implementation
+  * Server monitoring and management
+  * Development of applications and solutions in the field of e-mobility, charging controllers and charging station
+  control
 
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Dec 2019 - Sep 2022: University Assistant - Johannes Kepler University
+  * Lead on Last Mile Delivery Robot project
+    * 2D and 3D SLAM
+    * ROI Detection
+    * Path Planner
+  * Collaboration on Intelligent Car project
+    * Communication Layer car CAN-PC implementation
+    * Sensor mount design for various exteroceptive/proprioceptive sensors
+  * Course Exercises
+    * Python Programming for Economic and Business Analytics
+    * Introduction to software development with Python
   
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Linux
+* Programming (<img src="https://raw.githubusercontent.com/yurijserrano/Github-Profile-Readme-Logos/042e36c55d4d757621dedc4f03108213fbb57ec4/programming%20languages/bash.svg" height="25" alt="Bash"> <img src="https://raw.githubusercontent.com/yurijserrano/Github-Profile-Readme-Logos/042e36c55d4d757621dedc4f03108213fbb57ec4/programming%20languages/c.svg" height="25" alt="C"> <img src="https://raw.githubusercontent.com/yurijserrano/Github-Profile-Readme-Logos/042e36c55d4d757621dedc4f03108213fbb57ec4/programming%20languages/c%2B%2B.svg" height="25" alt="C++"> <img src="https://raw.githubusercontent.com/yurijserrano/Github-Profile-Readme-Logos/042e36c55d4d757621dedc4f03108213fbb57ec4/programming%20languages/python.svg" height="25" alt="Python">)
+* CI/CD
+  * Github Actions
+  * Gitlab CI
+  * Travis CI
+  * Jemkins
 
 Publications
 ======
@@ -58,7 +76,3 @@ Teaching
   <ul>{% for post in site.teaching reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
