@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Georg Adrian Novotny"
   avatar           : "Novotny.jpeg"
-  bio              : "Georg Novotny is a part-time lecturer at [UAS Technikum Vienna](https://www.technikum-wien.at/en/), where he teaches mobile robotics and is actively involved in the development of search and rescue robots. Alongside his work at UAS, he works as a platform engineer at [MIC](https://www.mic-cust.com/). Georg is also currently pursuing his PhD at JKU, where he is focused on system identification and parameter estimation of vehicles and robots. With his expertise in robotics and engineering, Georg is dedicated to advancing the field of autonomous systems and developing cutting-edge technologies that improve our lives."
+  bio              : "Georg Novotny is a part-time lecturer at UAS Technikum Vienna, where he teaches mobile robotics and is actively involved in the development of search and rescue robots. Alongside his work at UAS, he works as a platform engineer at MIC-Cust. Georg is also currently pursuing his PhD at JKU, where he is focused on system identification and parameter estimation of vehicles and robots. With his expertise in robotics and engineering, Georg is dedicated to advancing the field of autonomous systems and developing cutting-edge technologies that improve our lives."
   location         : "Vienna"
   employer         :
   googlescholar    : "https://scholar.google.de/citations?user=ICKy-zgAAAAJ&hl=de&oi=sra"
