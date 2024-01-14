@@ -1,7 +1,7 @@
 ---
 title: 'Introducing a New RVIZ2 Plugin for Displaying Vision_msgs in ROS 2'
 date: 2024-01-14
-permalink: /posts/2024/01/1/
+permalink: /posts/2024/01/2/
 tags:
   - Gazebo
   - ROS2
