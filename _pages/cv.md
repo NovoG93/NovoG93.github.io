@@ -48,6 +48,11 @@ Work experience
   * Course Exercises
     * Python Programming for Economic and Business Analytics
     * Introduction to software development with Python
+
+* May 2023 - Current: Platform Engineer - MIC Customs Solutions
+  * Jenkins CI/CD implementations
+  * Deploying and maintaining Azure Kubernetes clusters
+  * Developed a seamless local development environment using Tilt and Rancher Desktop
   
 Skills
 ======
@@ -58,6 +63,9 @@ Skills
   * ![GitLab CI](https://img.shields.io/badge/gitlab%20ci-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white)
   * ![TravisCI](https://img.shields.io/badge/travis%20ci-%232B2F33.svg?style=for-the-badge&logo=travis&logoColor=white)
   * ![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white)
+* Kubernetes (k8s)
+  * ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326CE5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+  * ![Helm](https://img.shields.io/badge/helm-%230F1689.svg?style=for-the-badge&logo=helm&logoColor=white)
 
 Publications
 ======
