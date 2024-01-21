@@ -9,9 +9,9 @@ citation: 'Emsenhuber, S., Philipp, K., Pöschko, C., Voglsinger, F., Novotny, G
 
 __Abstract:__ In public emergencies such as nuclear accidents or natural disasters, an immediate and accurate overview as well as an assessment of the area is the basis of all coordinated plans and actions for the rescue team. The persistent lack of such information leads to high risks and casualties for rescue workers. Mobile robots help to minimize risks and support the rescue teams with urgent information, as well as with debris clearing and search and rescue operations. This work discusses the necessities and requirements of mobile robots in search and rescue (S&R) applications such as an nuclear disaster. Further it describes the current hardware setup as well as the software architecture of the mobile robot Robbie of UAS Technikum Wien.
 
-[Access paper here](https://workshops.aapr.at/wp-content/uploads/2019/05/ARW-OAGM19_22.pdf){:target="_blank"} or get the pdf [here](files/paper/Robbie–A_tele_operated_Robot_With_Autonomous_Capabilities_for_EnRicH-2019robotics_trial.pdf){:target="_blank"}
+[Access paper here](https://workshops.aapr.at/wp-content/uploads/2019/05/ARW-OAGM19_22.pdf){:target="_blank"} or get the pdf [here](https://novog93.github.io/files/paper/Robbie–A_tele_operated_Robot_With_Autonomous_Capabilities_for_EnRicH-2019robotics_trial.pdf){:target="_blank"}
 
-__Bibtex__:  [download](files/bib/Emsenhuber2019.bib)
+__Bibtex__:  [download](https://novog93.github.io/files/bib/Emsenhuber2019.bib)
 
 ```bibtex
 @inproceedings{Emsenhuber2019,

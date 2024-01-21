@@ -9,9 +9,9 @@ citation: 'Novotny, G., Novotny, G. A., Emsenhuber, S., Klammer, P., Pöschko, C
 
 __Abstract:__ In public emergencies such as nuclear accidents or natural disasters, an immediate and accurate overview as well as an assessment of the area is the basis of all coordinated plans and actions for the rescue team. The persistent lack of such information leads to high risks and casualties for rescue workers. Mobile robots help to minimize risks and support the rescue teams with urgent information, as well as with debris clearing and search and rescue operations. This work discusses the necessities and requirements of mobile robots in search and rescue (S&R) applications such as a nuclear disaster and evaluates an implementation based on the system architecture of the mobile S&R robot “Robbie” of UAS Technikum Wien.
 
-[Access paper here](https://doi.org/10.2507/30th.daaam.proceedings.131){:target="_blank"} or get the pdf [here](files/paper/A_Mobile_Robot_Platform_For_Search_And_Rescue_Applications.pdf){:target="_blank"}
+[Access paper here](https://doi.org/10.2507/30th.daaam.proceedings.131){:target="_blank"} or get the pdf [here](https://novog93.github.io/files/paper/A_Mobile_Robot_Platform_For_Search_And_Rescue_Applications.pdf){:target="_blank"}
 
-__Bibtex:__  [download](files/bib/Novotny2019.bib)
+__Bibtex:__  [download](https://novog93.github.io/files/bib/Novotny2019.bib)
 
 ```bibtex
 @inproceedings{Novotny2019,

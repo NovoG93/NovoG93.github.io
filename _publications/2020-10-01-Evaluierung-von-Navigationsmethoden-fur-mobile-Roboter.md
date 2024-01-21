@@ -10,9 +10,9 @@ citation: 'Wöber, W., Rauer, J., Papa, M., Aburaia, A., Schwaiger, S., Novotny,
 
 __Abstract:__ Intelligent mobile robots and service robots are central parts of autonomous productions and flexible manufacturing. Interconnected industrial robot-based automation allows customized productions for which mobile robots are used for transport of material and tools. The digital factory of the UAS Technikum Wien is a research project which focuses on experimental evaluation of novel technologies for digital manufacturing. This paper discusses applications of mobile and service robots in the digital factory. Based on a production use case, we analyze several methods for navigation in terms of accuracy of those approaches and discuss safety aspects.
 
-[Access paper here](https://doi.org/10.1007/s00502-020-00820-x){:target="_blank"} or get the pdf [here](files/paper/Evaluierung_von_Navigationsmethoden_fuer_mobile_Roboter.pdf){:target="_blank"}
+[Access paper here](https://doi.org/10.1007/s00502-020-00820-x){:target="_blank"} or get the pdf [here](https://novog93.github.io/files/paper/Evaluierung_von_Navigationsmethoden_fuer_mobile_Roboter.pdf){:target="_blank"}
 
-__Bibtex:__ [download](files/bib/Woeber2020b.bib)
+__Bibtex:__ [download](https://novog93.github.io/files/bib/Woeber2020b.bib)
 
 ```bibtex
 @article{,

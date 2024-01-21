@@ -23,9 +23,9 @@ Executed in a real power plant setting, these tasks presented layers of complexi
 
 We presented our design solutions with the following papers:
 
-- [Robbie–A tele-operated robot with autonomous capabilities for EnRicH-2019 robotics trial](https://doi.org/10.3217/978-3-85125-663-5-22) [pdf](files/paper/Robbie–A_tele_operated_Robot_With_Autonomous_Capabilities_for_EnRicH-2019robotics_trial.pdf)
-- [A Mobile Robot Platform for Search and Rescue Applications](https://doi.org/10.2507/30th.daaam.proceedings.131) [pdf](files/paper/A_Mobile_Robot_Platform_For_Search_And_Rescue_Applications.pdf)
-- [Design and Implementation of a Mobile Search and Rescue Robot](https://doi.org/10.3217/978-3-85125-752-6-06) [pdf](files/paper/Design_and_Implementation_of_a_Mobile_Search_and_Rescue_Robot.pdf)
+- [Robbie–A tele-operated robot with autonomous capabilities for EnRicH-2019 robotics trial](https://doi.org/10.3217/978-3-85125-663-5-22) [get the pdf](files/paper/Robbie–A_tele_operated_Robot_With_Autonomous_Capabilities_for_EnRicH-2019robotics_trial.pdf)
+- [A Mobile Robot Platform for Search and Rescue Applications](https://doi.org/10.2507/30th.daaam.proceedings.131) [get the pdf](files/paper/A_Mobile_Robot_Platform_For_Search_And_Rescue_Applications.pdf)
+- [Design and Implementation of a Mobile Search and Rescue Robot](https://doi.org/10.3217/978-3-85125-752-6-06) [get the pdf](files/paper/Design_and_Implementation_of_a_Mobile_Search_and_Rescue_Robot.pdf)
 
 ### Our Solution: A Multi-SLAM Approach
 
@@ -43,12 +43,12 @@ Our approach showcased the integration of advanced navigation algorithms, real-t
 
 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
     <figure style="margin: 10px;">
-        <img src="../images/2019-EnRicH/RN_map.png" alt="Radiation Map" width="300">
+        <img src="/images/2019-EnRicH/RN_map.png" alt="Radiation Map" width="300">
         <figcaption>Radiation Map</figcaption>
     </figure>
     <figure style="margin: 10px;">
         <video width="300" type="video/mp4" controls autoplay loop>
-            <source src="../images/2019-EnRicH/EnRicH_Animation.mp4">
+            <source src="/images/2019-EnRicH/EnRicH_Animation.mp4">
             Your browser does not support the video tag.
         </video>
         <figcaption>3D Map Animation</figcaption>
