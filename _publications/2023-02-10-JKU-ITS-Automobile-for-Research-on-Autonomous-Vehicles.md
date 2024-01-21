@@ -9,9 +9,9 @@ citation: 'Certad, N., Morales-Alvarez, W., Novotny, G., & Olaverri-Monreal, C. 
 
 __Abstract:__ In this paper, we present our brand-new platform for Automated Driving research. The chosen vehicle is a RAV4 hybrid SUV from TOYOTA provided with exteroceptive sensors such as a multilayer LIDAR, a monocular camera, Radar and GPS; and proprioceptive sensors such as encoders and a 9-DOF IMU. These sensors are integrated in the vehicle via a main computer running ROS1 under Linux 20.04. Additionally, we installed an open-source ADAS called Comma Two, that runs Openpilot to control the vehicle. The platform is currently being used to research in the field of autonomous vehicles, human and autonomous vehicles interaction, human factors and energy consumption.
 
-[Access paper here](https://doi.org/10.1007%2F978-3-031-25312-6_38){:target="_blank"} or get the pdf [here](files/paper/JKU-ITS_Automobile_for_Research_on_Autonomous_Vehicles.pdf){:target="_blank"}
+[Access paper here](https://doi.org/10.1007%2F978-3-031-25312-6_38){:target="_blank"} or get the pdf [here](https://novog93.github.io/files/paper/JKU-ITS_Automobile_for_Research_on_Autonomous_Vehicles.pdf){:target="_blank"}
 
-__Bibtex:__ [bib](files/bib/Certad2022.bib)
+__Bibtex:__ [bib](https://novog93.github.io/files/bib/Certad2022.bib)
 
 ```bibtex
 @inproceedings{Certad2022,
