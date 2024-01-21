@@ -76,7 +76,7 @@ I would like to thank the [UAS Technikum Wien](https://www.technikum-wien.at/en/
 <figure>
     <center>
         <a href="https://www.flickr.com/photos/europeanrobotics/49103512828/in/album-72157711884747061/">
-            <img src="../images/2019-EnRicH/TAUT.jpg" width="512" alt="EnRicH2019-TAUT"/>
+            <img src="/images/2019-EnRicH/TAUT.jpg" width="512" alt="EnRicH2019-TAUT"/>
         </a>
         <figcaption>TAUT Team</figcaption>
         <figcaption>Philipp Klammer, Simon Emmsenhuber, Florian Voglsinger, Christoph Pöschko, Georg Novotny, Wilfried Kubinger</figcaption>
