@@ -26,4 +26,4 @@ __Bibtex:__ [bib](https://novog93.github.io/files/bib/Novotny2023b.bib)
   url       = {https://www.joanneum.at/fileadmin/ROBOTICS/ARW_Proceedings/2023_ARW_Proceedings.pdf},
   year      = {2023}
 }
-``
+```
