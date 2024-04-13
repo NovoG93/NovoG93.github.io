@@ -11,7 +11,7 @@ __Abstract:__ The use of robotics in search and rescue operations has grown in r
 
 [Access paper here](https://www.joanneum.at/fileadmin/ROBOTICS/ARW_Proceedings/2023_ARW_Proceedings.pdf){:target="_blank"} or get the pdf [here](https://novog93.github.io/files/paper/On_the_Applicability_of_Docker_Containers_and_systemd_Services_for_Search_and_Rescue_Applications.pdf){:target="_blank"}
 
-__Bibtex:__ [bib](https://novog93.github.io/files/bib/Novotny2023b.bib)
+__Bibtex:__ [download](https://novog93.github.io/files/bib/Novotny2023b.bib)
 
 ```bibtex
 @inproceedings{Novotny2023,

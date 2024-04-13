@@ -11,7 +11,7 @@ __Abstract:__ In this paper, we present our brand-new platform for Automated Dri
 
 [Access paper here](https://doi.org/10.1007%2F978-3-031-25312-6_38){:target="_blank"} or get the pdf [here](https://novog93.github.io/files/paper/JKU-ITS_Automobile_for_Research_on_Autonomous_Vehicles.pdf){:target="_blank"}
 
-__Bibtex:__ [bib](https://novog93.github.io/files/bib/Certad2022.bib)
+__Bibtex:__ [download](https://novog93.github.io/files/bib/Certad2022.bib)
 
 ```bibtex
 @inproceedings{Certad2022,
