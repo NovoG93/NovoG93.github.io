@@ -11,7 +11,7 @@ __Abstract:__ In the context of Intelligent Transportation Systems and the deliv
 
 [Access paper here](https://ieeexplore.ieee.org/document/9304701?denied=){:target="_blank"} or get the pdf [here](https://novog93.github.io/files/paper/Mobile_Delivery_Robots_Mixed_Reality_Based_Simulation_Relying_on_ROS_and_Unity_3D.pdf){:target="_blank"}
 
-__Bibtex:__ [bib](https://novog93.github.io/files/bib/Liu2020.bib)
+__Bibtex:__ [download](https://novog93.github.io/files/bib/Liu2020.bib)
 
 ```bibtex
 @inproceedings{Liu2020,

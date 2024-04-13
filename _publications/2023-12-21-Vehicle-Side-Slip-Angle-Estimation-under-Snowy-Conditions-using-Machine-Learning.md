@@ -11,7 +11,7 @@ __Abstract:__ Adverse weather conditions, such as snow-covered roads, represent 
 
 [Access paper here](https://doi.org/10.3233/ICA-230727){:target="_blank"} or get the pdf [here](https://novog93.github.io/files/paper/Vehicle_Side_Slip_Angle_Estimation_under_Snowy_Conditions_using_Machine_Learning.pdf){:target="_blank"}
 
-__Bibtex:__ [bib](https://novog93.github.io/files/bib/Novotny2023a.bib)
+__Bibtex:__ [download](https://novog93.github.io/files/bib/Novotny2023a.bib)
 
 ```bibtex
 @article{Novotny2023,
