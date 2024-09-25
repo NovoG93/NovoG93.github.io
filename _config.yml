@@ -117,11 +117,7 @@ social:
 
 # Analytics
 analytics:
-  provider: "google-gtag"
-  google:
-    tracking_id: "G-P29QNQGYLC"
-    anonymize_ip: false # default
-
+  provider: "custom"
 
 
 
