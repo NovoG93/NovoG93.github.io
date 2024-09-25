@@ -93,7 +93,7 @@ atom_feed:
 
 
 # SEO Related
-google_site_verification : oAkgsEloxjWNNPbag2e4yRyJkRoQmr6G9gx6O7Pimho
+google_site_verification : G-P29QNQGYLC
 bing_site_verification   :
 alexa_site_verification  :
 yandex_site_verification : c295a682d714b224
@@ -117,9 +117,10 @@ social:
 
 # Analytics
 analytics:
-  provider               :  "false" # false (default), "google", "google-universal", "google-analytics-4", "custom"
+  provider: "google-gtag"
   google:
-    tracking_id          :
+    tracking_id: "G-P29QNQGYLC"
+    anonymize_ip: false # default
 
 
 
