@@ -1,7 +1,7 @@
 ---
-title: 'Introducing a New RVIZ2 Plugin for Displaying Vision_msgs in ROS 2'
+title: 'How to Use Docker Containers and systemd to Manage Robotics Applications'
 date: 2024-01-14
-permalink: /posts/2024/01/2/
+permalink: /posts/2024/09/25/
 tags:
   - ROS2
   - ROS
