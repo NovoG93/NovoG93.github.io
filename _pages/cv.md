@@ -66,6 +66,7 @@ Skills
 * Kubernetes (k8s)
   * ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326CE5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
   * ![Helm](https://img.shields.io/badge/helm-%230F1689.svg?style=for-the-badge&logo=helm&logoColor=white)
+  * ![CKAD](https://img.shields.io/badge/CKAD-%23326CE5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
 
 Publications
 ======
