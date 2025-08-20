@@ -333,6 +333,7 @@ Then you can join any number of worker nodes by running the following on each as
 kubeadm join cp1:6443 --token qojgig.d45q3p6mq43a9pgi \
         --discovery-token-ca-cert-hash sha256:78d97189f734d2f8e462d6af99d56973130688b1beafd81235bd48237e290572
 ```
+
 </details>
 
 This will take a while and once it is done you will see a message similar to the one below:
