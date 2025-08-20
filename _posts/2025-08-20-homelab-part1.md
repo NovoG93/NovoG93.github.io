@@ -1,7 +1,7 @@
 ---
 title: 'Setting up a Kubernetes Cluster the Hard Way with kubeadm (GitOps Series, Part 1)'
-date: 2025-06-25
-permalink: /posts/2025/06/24/
+date: 2025-08-20
+permalink: /posts/2025/08/20/
 tags:
     - kubernetes
     - gitops
