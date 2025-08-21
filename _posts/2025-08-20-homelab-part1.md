@@ -235,7 +235,7 @@ EOF
 kubeadm init --config=${KUBEADM_CONFIG} --upload-certs | tee kubeadm-init.out
 ```
 
-<details>
+<details markdown="1">
 
 <summary>complete kubeadm init output</summary>
 
