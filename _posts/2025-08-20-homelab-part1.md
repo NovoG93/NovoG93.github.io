@@ -27,11 +27,10 @@ The 3 parts of this series will cover the following topics:
   2. Setting up a k8s IDE ([k9s](https://github.com/derailed/k9s), or [Freelens](https://github.com/freelensapp/freelens))
 
 ### Part 2: Deploying Core Infrastructure applications and cluster tools
-1. Cluster Configuration
-   1. Setting up core infrastructure components
-   2. Calico as CNI plugin via tigera-operator
-   3. MetalLB as load balancer
-   4. Metric-server for resource metrics
+1. Setting up core infrastructure components
+   1. Calico as CNI plugin via tigera-operator
+   2. MetalLB as load balancer
+   3. Metric-server for resource metrics
 2. Installing essential cluster tools:
    1. ArgoCD for GitOps
    2. Vault + External Secrets Operator for managing secrets
