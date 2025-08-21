@@ -28,7 +28,7 @@ The 3 parts of this series will cover the following topics:
 
 ### Part 2: Deploying Core Infrastructure applications and cluster tools
 1. Cluster Configuration
-   1. Setting up core infrastructure components:
+   1. Setting up core infrastructure components
    2. Calico as CNI plugin via tigera-operator
    3. MetalLB as load balancer
    4. Metric-server for resource metrics
@@ -40,7 +40,7 @@ The 3 parts of this series will cover the following topics:
    5. Deploying nginx-ingress controller for ingress management
    6. Configuring kyverno to populate ingress resources with TLS certificates
    7. Installing pi-hole for DNS management and ad-blocking
-   8.  Configuring external-dns for dynamic DNS updates via pi-hole
+   8. Configuring external-dns for dynamic DNS updates via pi-hole
 
 ### Part 3: Managing the cluster using App of Apps Principles
 1. Changing the cluster management approach to App of Apps
@@ -105,8 +105,8 @@ The setup process involves the following steps:
 
 #### Installing Dependencies
 
-> [!IMPORTANT]  
-> If not otherwise specified, the commands in this guide should be run on all nodes (control plane and worker nodes).
+Important: If not otherwise specified, the commands in this guide should be run on all nodes (control plane and worker nodes).
+{: .notice--warning}
 
 Before we start, we need to install some dependencies on all nodes. SSH into each node and run the following commands:
 
@@ -177,8 +177,8 @@ crictl config --set runtime-endpoint=unix:///run/containerd/containerd.sock
 
 #### Configuring the Control Plane Node
 
-> [!IMPORTANT]  
-> The commands of this section should only be run on the control plane node.
+Important: The commands of this section should only be run on the control plane node.
+{: .notice--warning}
 
 Now that we have installed the necessary components, we can configure the control plane node. This involves initializing the cluster and setting up essential tools like Helm and Kustomize.
 
@@ -371,8 +371,8 @@ kubeadm join cp1:6443 --token qojgig.d45q3p6mq43a9pgi \
         --discovery-token-ca-cert-hash sha256:78d97189f734d2f8e462d6af99d56973130688b1beafd81235bd48237e290572
 ```
 
-> [!NOTE]  
-> Make sure to copy the `kubeadm join` command for worker nodes, as you will need it later to join the worker nodes to the cluster.
+Note: Make sure to copy the kubeadm join command for worker nodes, as you will need it later to join the worker nodes to the cluster.
+{: .notice--info}
 
 __Great stuff!__
 
@@ -384,19 +384,15 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-> [!NOTE]  
-> Make sure to copy the `kubeadm join` command for worker nodes, as you will need it later to join the worker nodes to the cluster.
-
-> [!NOTE]  
-> To gain access to the cluster from the control workstation you can copy the kubeconfig file from the control plane to the workstation. We will set this up in [Remote access to the cluster](#remote-access-to-the-cluster) section later on with a dedicated admin user.
+Note: To gain access to the cluster from the control workstation you can copy the kubeconfig file from the control plane to the workstation. We will set this up in [Remote access to the cluster](#remote-access-to-the-cluster) section later on with a dedicated admin user.
+{: .notice--info}
 
 
 
 ##### Using kubeadm to bootstrap to Worker Nodes
 
-> [!IMPORTANT]  
-> The commands of this section should only be run on the worker plane nodes.
-
+Important: The commands of this section should only be run on the worker plane nodes.
+{: .notice--warning}
 
 Now that the control plane is set up, we can join the worker nodes to the cluster. SSH into each worker node and configure the hosts file, then run the `kubeadm join` command that was provided at the end of the `kubeadm init` output on the control plane node.
 
@@ -433,8 +429,8 @@ wp2      Ready    <none>   5m    v1.33.1
 Now we will create an additional admin user. For this, we will use OpenSSL to generate a new certificate and key pair.
 
 
-> [!IMPORTANT]  
-> Execute this on the control plane node.
+Important: Execute this on the control plane node.
+{: .notice--warning}
 
 
 ```bash
@@ -459,8 +455,8 @@ sudo chmod 600 /etc/kubernetes/pki/users/admin.key
 To access the cluster remotely, you need to create a kubeconfig file that contains the necessary credentials and cluster information. This file will allow you to interact with the cluster from your control workstation.
 
 
-> [!IMPORTANT]  
-> Execute this on your control workstation.
+Important: Execute this on your control workstation.
+{: .notice--warning}
 
 ```bash
 CONTROL_PLANE_IP="192.168.0.151"
@@ -478,8 +474,8 @@ scp user@cp1:/etc/kubernetes/pki/users/admin.key $HOME/.kube/users/admin/
 ```
 
 
-> [!CAUTION]
-> This will overwrite an existing kubeconfig file.
+Caution: This will overwrite an existing kubeconfig file.
+{: .notice--danger}
 
 ```bash
 cat <<EOF | tee $HOME/.kube/config
