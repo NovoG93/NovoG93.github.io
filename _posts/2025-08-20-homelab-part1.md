@@ -86,17 +86,19 @@ I used three machines running Ubuntu 24.04 Server, with the following specificat
 
 The setup process involves the following steps:
 
-0. Installing dependencies
-1. Configuring kernel modules and installing container runtime
-2. Installing kubeadm, kubelet, and kubectl
-3. Configuring the control plane node
-   1. Installing helm and kustomize
-   2. Running kubeadm init
-4. Configuring worker nodes
-   1. Configuring /etc/hosts
-   2. Joining worker nodes to the cluster
-5. Installing a CNI plugin
-
+- [Setting up the Kubernetes cluster from scratch using kubeadm](#setting-up-the-kubernetes-cluster-from-scratch-using-kubeadm)
+  - [Installing kubeadm and joining worker nodes](#installing-kubeadm-and-joining-worker-nodes)
+    - [Installing Dependencies](#installing-dependencies)
+    - [Configuring Kernel Modules and Installing Container Runtime](#configuring-kernel-modules-and-installing-container-runtime)
+    - [Installing kubeadm, kubelet, and kubectl](#installing-kubeadm-kubelet-and-kubectl)
+    - [Configuring the Control Plane Node](#configuring-the-control-plane-node)
+      - [Installing Helm and Kustomize](#installing-helm-and-kustomize)
+      - [Using kubeadm to bootstrap to Control Node](#using-kubeadm-to-bootstrap-to-control-node)
+      - [Using kubeadm to bootstrap to Worker Nodes](#using-kubeadm-to-bootstrap-to-worker-nodes)
+  - [Testing the Cluster Setup](#testing-the-cluster-setup)
+- [Remote access to the cluster](#remote-access-to-the-cluster)
+  - [User creation using openssl](#user-creation-using-openssl)
+  - [Setting up a k8s IDE](#setting-up-a-k8s-ide)
 
 ## Setting up the Kubernetes cluster from scratch using kubeadm
 
@@ -405,7 +407,7 @@ kubeadm join cp1:6443 --token qojgig.d45q3p6mq43a9pgi \
 
 
 
-#### Testing the Cluster Setup
+### Testing the Cluster Setup
 
 After joining the worker nodes, you can verify the cluster setup by running the following command on the control plane node:
 
@@ -422,6 +424,9 @@ wp1      Ready    <none>   5m    v1.33.1
 wp2      Ready    <none>   5m    v1.33.1
 ```
 
+
+## Remote access to the cluster
+We can now use `kubectl` inside our control plane! As it is not always convenient to SSH into the control plane node and manage our git repositories there, we will set up remote access to the cluster from our control workstation.
 
 ### User creation using openssl
 
@@ -449,7 +454,6 @@ sudo chmod 644 /etc/kubernetes/pki/users/admin.key
 sudo chmod 600 /etc/kubernetes/pki/users/admin.key
 ```
 
-### Remote access to the cluster
 
 To access the cluster remotely, you need to create a kubeconfig file that contains the necessary credentials and cluster information. This file will allow you to interact with the cluster from your control workstation.
 
