@@ -92,13 +92,14 @@ The setup process involves the following steps:
     - [Configuring Kernel Modules and Installing Container Runtime](#configuring-kernel-modules-and-installing-container-runtime)
     - [Installing kubeadm, kubelet, and kubectl](#installing-kubeadm-kubelet-and-kubectl)
     - [Configuring the Control Plane Node](#configuring-the-control-plane-node)
-      - [Installing Helm and Kustomize](#installing-helm-and-kustomize)
+      - [Installing Helm and Kustomize](#installing-helm-and-kustomize-optional)
       - [Using kubeadm to bootstrap to Control Node](#using-kubeadm-to-bootstrap-to-control-node)
       - [Using kubeadm to bootstrap to Worker Nodes](#using-kubeadm-to-bootstrap-to-worker-nodes)
   - [Testing the Cluster Setup](#testing-the-cluster-setup)
 - [Remote access to the cluster](#remote-access-to-the-cluster)
   - [User creation using openssl](#user-creation-using-openssl)
   - [Setting up a k8s IDE](#setting-up-a-k8s-ide)
+  - [Installing Helm and Kustomize](#installing-helm-and-kustomize)
 
 ## Setting up the Kubernetes cluster from scratch using kubeadm
 
@@ -184,7 +185,7 @@ Important: The commands of this section should only be run on the control plane 
 Now that we have installed the necessary components, we can configure the control plane node. This involves initializing the cluster and setting up essential tools like Helm and Kustomize.
 
 
-##### Installing Helm and Kustomize
+##### Installing Helm and Kustomize (optional)
 ```bash
 # Install Helm
 curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
@@ -543,3 +544,20 @@ When you run `k9s --kubeconfig $HOME/.kube/config` you will see the following:
     <figcaption>k9s@homelab</figcaption>
   </figure>
 </div>
+
+### Installing Helm and Kustomize
+Helm and Kustomize are essential tools for managing Kubernetes applications. 
+
+Their main features are:
+
+* __Helm__: Is a package manager for Kubernetes, allowing you to parameterise, install, and upgrade even the most complex Kubernetes applications.
+* __Kustomize__: Is a tool for customizing Kubernetes YAML configurations, allowing you to manage different environments (e.g., development, staging, production) with ease.
+
+In the later parts of this series, we will use them extensively to deploy and manage applications in our cluster via ArgoCD.  However, it's important to be able to render the charts locally to verify their correctness before deploying.
+
+```bash
+# Install Helm
+curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+# Install Kustomize
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+```
