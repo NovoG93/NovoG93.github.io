@@ -13,41 +13,44 @@ tags:
 
 # Setting up a Kubernetes Cluster the Hard Way with kubeadm (GitOps Series, Part 1)
 
-In this post, I will walk you through my journey of setting up an over-engineered homelab based on Kubernetes cluster using kubeadm, while adhering to GitOps principles for deploying and managing cluster tools and applications. 
+In this post, I will walk you through my journey of setting up an over-engineered homelab based on Kubernetes cluster using kubeadm, while adhering to GitOps principles for deploying and managing cluster tools and applications.
 
 The 3 parts of this series will cover the following topics:
 
-
 ### Part 1: Setting up the Kubernetes cluster from scratch using kubeadm
+
 1. Setting up the Kubernetes cluster from scratch using kubeadm
-  1. Installing kubeadm and joining worker nodes
-  2. User creation using openssl
+    1. Installing kubeadm and joining worker nodes
+    2. User creation using openssl
 2. Remote access to the cluster
-  1. Generating a kubeconfig file for remote access
-  2. Setting up a k8s IDE ([k9s](https://github.com/derailed/k9s), or [Freelens](https://github.com/freelensapp/freelens))
+    1. Generating a kubeconfig file for remote access
+    2. Setting up a k8s IDE ([k9s](https://github.com/derailed/k9s), or [Freelens](https://github.com/freelensapp/freelens))
 
 ### Part 2: Deploying Core Infrastructure applications and cluster tools
-1. Setting up core infrastructure components
-   1. Calico as CNI plugin via tigera-operator
-   2. MetalLB as load balancer
-   3. Metric-server for resource metrics
-2. Installing essential cluster tools:
-   1. ArgoCD for GitOps
-   2. Vault + External Secrets Operator for managing secrets
-   3. Enabling NFS for persistent storage
-   4. Configuring cert-manager for managing TLS certificates
-   5. Deploying nginx-ingress controller for ingress management
-   6. Configuring kyverno to populate ingress resources with TLS certificates
-   7. Installing pi-hole for DNS management and ad-blocking
-   8. Configuring external-dns for dynamic DNS updates via pi-hole
+
+1. Setting up core infrastructure components and tools
+   0. Adding taints and labels to the nodes
+   1. Core
+      1. Calico as CNI plugin via tigera-operator
+      2. MetalLB as load balancer
+      3. Metric-server for resource metrics
+   2. Tools
+      1. ArgoCD for GitOps
+      2. Vault + External Secrets Operator for managing secrets
+      3. Enabling NFS for persistent storage
+      4. Configuring cert-manager for managing TLS certificates
+      5. Deploying nginx-ingress controller for ingress management
+      6. Configuring kyverno to populate ingress resources with TLS certificates
+      7. Installing pi-hole for DNS management and ad-blocking
+      8. Configuring external-dns for dynamic DNS updates via pi-hole
 
 ### Part 3: Managing the cluster using App of Apps Principles
+
 1. Changing the cluster management approach to App of Apps
 2. Deploying homarr as dashboard for managing applications
 3. Deploying tailscale-operator for secure remote access
    1. Adding kyverno policy to generate tailscale ingress for VirtualServer
 4. Deploying immich as google fotos replacement
-
 
 Without further ado, let's get to it!
 
@@ -58,6 +61,7 @@ Without further ado, let's get to it!
 The first part of this series will focus on setting up a Kubernetes cluster from scratch using kubeadm. This process involves several steps, including configuring the control plane, joining worker nodes, and setting up essential tools for managing the cluster. The guide below will walk you through the entire process, ensuring that you have a solid foundation for your Kubernetes homelab, but instead of doing the steps manually you could also checkout my [GitHub repository](https://github.com/NovoG93/homelab) which contains an ansible playbook that automates the setup process.
 
 ## Introduction
+
 Kubernetes (k8s) is the de-facto standard for orchestrating containerized applications. Even though there are many managed Kubernetes services available (AKS, GKE, Hetzner, ...), setting up a cluster from scratch was a great learning experience and one thing that you need to be able to pass the CKA exam.
 
 Kubeadm is the tool that will get the job done. Once you install it on your hardware, it will take care of bootstrapping the control plane and worker nodes based on a yaml configuration.
@@ -66,6 +70,7 @@ It will ensure that the kubelet is run as systemd service which in return will m
 But we are getting ahead of ourselves, let's start with the prerequisites and the setup process.
 
 ## Prerequisites
+
 Before we begin, ensure you have the following:
 
 - A set of machines (virtual or physical) to serve as the control plane and worker nodes
@@ -74,6 +79,7 @@ Before we begin, ensure you have the following:
 - Control workstation to connect to the nodes
 
 ### Machine Setup
+
 I used three machines running Ubuntu 24.04 Server, with the following specifications:
 
 | Machine       | Hostname | IP            | Hardware                    |
@@ -127,6 +133,7 @@ echo 'if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ -z "$SESSION_MAN
 ```
 
 #### Configuring Kernel Modules and Installing Container Runtime
+
 Kubernetes requires certain kernel modules enabled and swapping disabled. Furthermore, a container runtime is needed to run containers, for this setup we will use containerd.
 
 ```bash
@@ -157,6 +164,7 @@ sudo systemctl restart containerd
 ```
 
 #### Installing kubeadm, kubelet, and kubectl
+
 Now we will install the Kubernetes components: kubeadm, kubelet, and kubectl. These tools are essential for managing the Kubernetes cluster.
 
 - `kubeadm` is used to bootstrap the cluster
@@ -184,8 +192,8 @@ Important: The commands of this section should only be run on the control plane 
 
 Now that we have installed the necessary components, we can configure the control plane node. This involves initializing the cluster and setting up essential tools like Helm and Kustomize.
 
-
 ##### Installing Helm and Kustomize (optional)
+
 ```bash
 # Install Helm
 curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
@@ -193,10 +201,10 @@ curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | 
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 ```
 
-
 ##### Using kubeadm to bootstrap to Control Node
 
 Before we can initialize we need to:
+
 1. Know the interface name (e.g., `eth0`, `ens33`, etc.) that will be used for the Kubernetes API server.
 2. Know the IP address of the control plane node.
 3. Define the pod network CIDR (e.g., `10.0.0.0/16`) that will be used for the cluster.
@@ -389,8 +397,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 Note: To gain access to the cluster from the control workstation you can copy the kubeconfig file from the control plane to the workstation. We will set this up in [Remote access to the cluster](#remote-access-to-the-cluster) section later on with a dedicated admin user.
 {: .notice--info}
 
-
-
 ##### Using kubeadm to bootstrap to Worker Nodes
 
 Important: The commands of this section should only be run on the worker plane nodes.
@@ -398,15 +404,12 @@ Important: The commands of this section should only be run on the worker plane n
 
 Now that the control plane is set up, we can join the worker nodes to the cluster. SSH into each worker node and configure the hosts file, then run the `kubeadm join` command that was provided at the end of the `kubeadm init` output on the control plane node.
 
-
 ```bash
 echo "192.168.0.151 cp1" | sudo tee -a /etc/hosts
 
 kubeadm join cp1:6443 --token qojgig.d45q3p6mq43a9pgi \
         --discovery-token-ca-cert-hash sha256:78d97189f734d2f8e462d6af99d56973130688b1beafd81235bd48237e290572
 ```
-
-
 
 ### Testing the Cluster Setup
 
@@ -425,18 +428,16 @@ wp1      Ready    <none>   5m    v1.33.1
 wp2      Ready    <none>   5m    v1.33.1
 ```
 
-
 ## Remote access to the cluster
+
 We can now use `kubectl` inside our control plane! As it is not always convenient to SSH into the control plane node and manage our git repositories there, we will set up remote access to the cluster from our control workstation.
 
 ### User creation using openssl
 
 Now we will create an additional admin user. For this, we will use OpenSSL to generate a new certificate and key pair.
 
-
 Important: Execute this on the control plane node.
 {: .notice--warning}
-
 
 ```bash
 # Create a user certificate for the admin user
@@ -455,9 +456,7 @@ sudo chmod 644 /etc/kubernetes/pki/users/admin.key
 sudo chmod 600 /etc/kubernetes/pki/users/admin.key
 ```
 
-
 To access the cluster remotely, you need to create a kubeconfig file that contains the necessary credentials and cluster information. This file will allow you to interact with the cluster from your control workstation.
-
 
 Important: Execute this on your control workstation.
 {: .notice--warning}
@@ -469,14 +468,12 @@ CONTROL_PLANE_IP="192.168.0.151"
 echo "${CONTROL_PLANE_IP} cp1" | sudo tee -a /etc/hosts
 ```
 
-
 ```bash
 mkdir -p $HOME/.kube/users/admin
 scp user@cp1:/etc/kubernetes/pki/ca.crt $HOME/.kube/users/admin/
 scp user@cp1:/etc/kubernetes/pki/users/admin.crt $HOME/.kube/users/admin/
 scp user@cp1:/etc/kubernetes/pki/users/admin.key $HOME/.kube/users/admin/
 ```
-
 
 Caution: This will overwrite an existing kubeconfig file.
 {: .notice--danger}
@@ -505,12 +502,12 @@ users:
 EOF
 ```
 
-
 You should now be able to perform `kubectl` commands from your control workstation. For example, you can check the nodes in the cluster:
 
 ```bash
 kubectl get nodes
 ```
+
 You will see output similar to:
 
 ```shell
@@ -520,10 +517,9 @@ wp1      Ready    <none>   5m    v1.33.1
 wp2      Ready    <none>   5m    v1.33.1
 ```
 
-
 ### Setting up a k8s IDE
 
-Now that we have setup the kubeconfig file, we can use a Kubernetes IDE to manage our cluster more easily. My favorite is [k9s](https://k9scli.io/). 
+Now that we have setup the kubeconfig file, we can use a Kubernetes IDE to manage our cluster more easily. My favorite is [k9s](https://k9scli.io/).
 We will download the latest release from github and install it.
 
 ```bash
@@ -546,12 +542,13 @@ When you run `k9s --kubeconfig $HOME/.kube/config` you will see the following:
 </div>
 
 ### Installing Helm and Kustomize
-Helm and Kustomize are essential tools for managing Kubernetes applications. 
+
+Helm and Kustomize are essential tools for managing Kubernetes applications.
 
 Their main features are:
 
-* __Helm__: Is a package manager for Kubernetes, allowing you to parameterise, install, and upgrade even the most complex Kubernetes applications.
-* __Kustomize__: Is a tool for customizing Kubernetes YAML configurations, allowing you to manage different environments (e.g., development, staging, production) with ease.
+- __Helm__: Is a package manager for Kubernetes, allowing you to parameterise, install, and upgrade even the most complex Kubernetes applications.
+- __Kustomize__: Is a tool for customizing Kubernetes YAML configurations, allowing you to manage different environments (e.g., development, staging, production) with ease.
 
 In the later parts of this series, we will use them extensively to deploy and manage applications in our cluster via ArgoCD.  However, it's important to be able to render the charts locally to verify their correctness before deploying.
 
@@ -561,3 +558,4 @@ curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | 
 # Install Kustomize
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 ```
+
