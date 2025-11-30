@@ -35,14 +35,16 @@ The 3 parts of this series will cover the following topics:
       2. MetalLB as load balancer
       3. Metric-server for resource metrics
    2. Tools
-      1. ArgoCD for GitOps
-      2. Vault + External Secrets Operator for managing secrets
-      3. Enabling NFS for persistent storage
-      4. Configuring cert-manager for managing TLS certificates
-      5. Deploying nginx-ingress controller for ingress management
-      6. Configuring kyverno to populate ingress resources with TLS certificates
-      7. Installing pi-hole for DNS management and ad-blocking
-      8. Configuring external-dns for dynamic DNS updates via pi-hole
+      0. Enabling persistent storage via NFS and SMB provisioners
+      1. External Secrets Operator for Kubernetes secret management
+      2. Vault for secure secrets storage
+      3. ArgoCD for GitOps continuous delivery
+      4. Cert-manager for automated TLS certificate management
+      5. Wildcard TLS certificate provisioning
+      6. Nginx Ingress Controller with VirtualServer CRDs
+      7. Kyverno for policy-based secret distribution
+      8. Pi-hole for DNS management and ad-blocking
+      9. External-DNS for automatic DNS record management
 
 ### Part 3: Managing the cluster using App of Apps Principles
 
@@ -58,7 +60,9 @@ Without further ado, let's get to it!
 
 # Part 1: Setting up the Kubernetes cluster from scratch using kubeadm
 
-The first part of this series will focus on setting up a Kubernetes cluster from scratch using kubeadm. This process involves several steps, including configuring the control plane, joining worker nodes, and setting up essential tools for managing the cluster. The guide below will walk you through the entire process, ensuring that you have a solid foundation for your Kubernetes homelab, but instead of doing the steps manually you could also checkout my [GitHub repository](https://github.com/NovoG93/homelab) which contains an ansible playbook that automates the setup process.
+The first part of this series will focus on setting up a Kubernetes cluster from scratch using kubeadm. This process involves several steps, including configuring the control plane, joining worker nodes, and setting up essential tools for managing the cluster. The guide below will walk you through the entire process, ensuring that you have a solid foundation for your Kubernetes homelab.
+
+> **Automation Available**: Instead of doing the steps manually, you can checkout my [k8s-setup repository](https://github.com/NovoG93/k8s-setup) which contains an Ansible playbook that automates the entire setup process. The playbook handles common setup, containerd installation, k8s tools, DNS aliases, and kubeadm initialization for both control plane and worker nodes.
 
 ## Introduction
 
@@ -558,4 +562,25 @@ curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | 
 # Install Kustomize
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 ```
+
+## Summary
+
+In this first part of the GitOps homelab series, we successfully:
+
+1. **Prepared the host systems** - Installed dependencies, configured kernel modules, and set up containerd as the container runtime
+2. **Bootstrapped the Kubernetes cluster** - Used kubeadm to initialize the control plane and join worker nodes
+3. **Configured remote access** - Created admin user credentials and kubeconfig for managing the cluster from your workstation
+4. **Installed management tools** - Set up k9s for cluster visualization, plus Helm and Kustomize for application deployment
+
+At this point, you have a fully functional Kubernetes cluster ready for the next steps. However, the cluster still lacks essential components like:
+- A Container Network Interface (CNI) plugin for pod networking
+- A load balancer for exposing services
+- Storage provisioners for persistent data
+- Secret management for secure application configuration
+
+These will be covered in [Part 2: Deploying Core Infrastructure and Tools](/posts/2025/09/05/homelab-part2/), where we'll set up the complete infrastructure stack including Calico, MetalLB, ArgoCD, Vault, and more.
+
+---
+
+**Next**: [Part 2 - Deploying Core Infrastructure applications and cluster tools →](/posts/2025/09/05/homelab-part2/)
 
