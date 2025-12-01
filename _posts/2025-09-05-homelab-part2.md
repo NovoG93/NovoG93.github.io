@@ -867,18 +867,18 @@ spec:
           - path: "tools/**/app.yaml"
   template:
     metadata:
-      name: "{{ .name }}"
+      name: "{% raw %}{{ .name }}{% endraw %}"
       labels:
         group: tools
     spec:
-      project: "{{ .project }}"
+      project: "{% raw %}{{ .project }}{% endraw %}"
       source:
         repoURL: https://github.com/NovoG93/homelab
         targetRevision: main
-        path: "{{ .path.path }}"
+        path: "{% raw %}{{ .path.path }}{% endraw %}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{ .namespace }}"
+        namespace: "{% raw %}{{ .namespace }}{% endraw %}"
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
@@ -1202,7 +1202,7 @@ spec:
       apiVersion: v1
       kind: Secret
       name: wildcard-tls
-      namespace: "{{request.object.metadata.name}}"
+      namespace: "{% raw %}{{request.object.metadata.name}}{% endraw %}"
       synchronize: true
       generateExisting: true
       clone:

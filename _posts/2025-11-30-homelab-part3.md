@@ -107,18 +107,18 @@ spec:
           - path: "apps/**/app.yaml"
   template:
     metadata:
-      name: "{{ .name }}"
+      name: "{% raw %}{{ .name }}{% endraw %}"
       labels:
         group: apps
     spec:
-      project: "{{ .project }}"
+      project: "{% raw %}{{ .project }}{% endraw %}"
       source:
         repoURL: https://github.com/NovoG93/homelab
         targetRevision: main
-        path: "{{ .path.path }}"
+        path: "{% raw %}{{ .path.path }}{% endraw %}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{ .namespace }}"
+        namespace: "{% raw %}{{ .namespace }}{% endraw %}"
       syncPolicy:
         automated:
           prune: true
@@ -294,8 +294,8 @@ spec:
     generate:
       apiVersion: networking.k8s.io/v1
       kind: Ingress
-      name: tailscale-{{request.object.metadata.name}}-ig
-      namespace: "{{request.object.metadata.namespace}}"
+      name: {% raw %}tailscale-{{request.object.metadata.name}}-ig{% endraw %}
+      namespace: "{% raw %}{{request.object.metadata.namespace}}{% endraw %}"
       synchronize: true
       generateExisting: true
       data:
@@ -303,12 +303,12 @@ spec:
           annotations:
             created-by: kyverno.io/create-tailscale-ingress-from-virtualserver
             tailscale.com/proxy-class: "tool-node-config"
-          labels: "{{ request.object.metadata.labels || parse_json('{}') }}"
+          labels: "{% raw %}{{ request.object.metadata.labels || parse_json('{}') }}{% endraw %}"
         spec:
           ingressClassName: tailscale
           tls:
             - hosts:
-                - "{{request.object.metadata.name}}-{{request.object.metadata.namespace}}"
+                - "{% raw %}{{request.object.metadata.name}}-{{request.object.metadata.namespace}}{% endraw %}"
           rules:
             - http:
                 paths:
@@ -316,9 +316,9 @@ spec:
                     pathType: Prefix
                     backend:
                       service:
-                        name: "{{request.object.spec.upstreams[0].service}}"
+                        name: "{% raw %}{{request.object.spec.upstreams[0].service}}{% endraw %}"
                         port:
-                          number: "{{request.object.spec.upstreams[0].port}}"
+                          number: "{% raw %}{{request.object.spec.upstreams[0].port}}{% endraw %}"
 ```
 
 This policy:
@@ -420,8 +420,8 @@ spec:
     template:
       type: kubernetes.io/basic-auth
       data:
-        username: "{{ .username }}"
-        password: "{{ .password }}"
+        username: "{% raw %}{{ .username }}{% endraw %}"
+        password: "{% raw %}{{ .password }}{% endraw %}"
   data:
     - secretKey: username
       remoteRef:
@@ -491,7 +491,7 @@ controllers:
         image:
           tag: v2.0.1
         env:
-          REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
+          REDIS_HOSTNAME: '{% raw %}{{ printf "%s-valkey" .Release.Name }}{% endraw %}'
           DB_HOSTNAME: "immich-postgres-rw.immich.svc.cluster.local"
           DB_USERNAME:
             valueFrom:
@@ -515,7 +515,7 @@ immich:
       days: 30
     storageTemplate:
       enabled: true
-      template: "{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}"
+      template: "{% raw %}{{y}}/{{y}}-{{MM}}-{{dd}}/{{filename}}{% endraw %}"
 
 server:
   enabled: true
