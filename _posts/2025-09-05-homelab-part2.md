@@ -13,7 +13,7 @@ tags:
 
 # Setting up a Kubernetes Cluster the Hard Way with kubeadm (GitOps Series, Part 2)
 
-**$\leftarrow$ [Part 1: Setting up the Kubernetes cluster](/posts/2025/08/20/homelab-part1/)**
+**← [Part 1: Setting up the Kubernetes cluster](/posts/2025/08/20/homelab-part1/)**
 
 In the previous post of this series, we set up a Kubernetes cluster from scratch using kubeadm. Now that we have a functional cluster, it's time to deploy some essential infrastructure applications and tools to manage our cluster effectively.
 
@@ -38,8 +38,8 @@ Hence this post will now describe how to:
       9. External-DNS for automatic DNS record management
 
 During this setup we will run into the chicken-and-egg problem on a couple of occasions:
-- My applications rely on  secrets, but I want to manage my secrets in Git as well. $\rightarrow$ This will be solved by deploying Vault and the External Secrets Operator.
-- I want to use ArgoCD to manage my k8s manifests in a GitOps fashion, but I need to deploy ArgoCD first. $\rightarrow$ This will be solved by deploying ArgoCD manually first, then using it to manage itself and the rest of the applications.
+- My applications rely on  secrets, but I want to manage my secrets in Git as well. → This will be solved by deploying Vault and the External Secrets Operator.
+- I want to use ArgoCD to manage my k8s manifests in a GitOps fashion, but I need to deploy ArgoCD first. → This will be solved by deploying ArgoCD manually first, then using it to manage itself and the rest of the applications.
 
 
 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
@@ -602,7 +602,7 @@ The combination of External-DNS and Pi-hole allows for automatic DNS record mana
 The complete flow:
 1. VirtualServer created with `external-dns.alpha.kubernetes.io/hostname` annotation
 2. External-DNS creates DNS record in Pi-hole
-3. Pi-hole resolves `*.novotny.live` $\rightarrow$ nginx-ingress LoadBalancer IP
+3. Pi-hole resolves `*.novotny.live` → nginx-ingress LoadBalancer IP
 4. Nginx routes to the appropriate service
 
 ## Summary
@@ -627,4 +627,4 @@ The complete flow:
 
 ---
 
-**[$\leftarrow$ Part 1: Setting up the Kubernetes cluster](/posts/2025/08/20/homelab-part1/)** | **[Part 3: App of Apps and Applications $\rightarrow$](/posts/2025/11/30/homelab-part3/)**
+**[← Part 1: Setting up the Kubernetes cluster](/posts/2025/08/20/homelab-part1/)** | **[Part 3: App of Apps and Applications →](/posts/2025/11/30/homelab-part3/)**
