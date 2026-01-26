@@ -1,3 +1,36 @@
 <script src="{{ base_path }}/assets/js/main.min.js"></script>
 
 {% include analytics.html %}
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    mermaid.initialize({ startOnLoad: false });
+    
+    // Find all code blocks with 'language-mermaid'
+    const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+    
+    mermaidBlocks.forEach((block) => {
+      // The content of the code block is the mermaid diagram definition
+      const content = block.textContent;
+      
+      // Create a div for mermaid to render into
+      const div = document.createElement('div');
+      div.classList.add('mermaid');
+      div.textContent = content;
+      
+      // Find the container to replace. 
+      // Kramdown/Rouge usually wraps in div.highlighter-rouge > div.highlight > pre.highlight > code
+      const container = block.closest('.highlighter-rouge') || block.closest('pre');
+      
+      // Replace the container with the mermaid div
+      if (container) {
+        container.replaceWith(div);
+      }
+    });
+    
+    // Run mermaid
+    mermaid.run();
+  });
+</script>
