@@ -52,27 +52,27 @@ $sidebar-link-max-width     : 250px;
 
 
 /*
-   Colors
+   Colors - Dark Mode DevOps Theme
    ========================================================================== */
 
-$gray                       : #7a8288;
-$dark-gray                  : mix(#000, $gray, 40%);
-$darker-gray                : mix(#000, $gray, 60%);
-$light-gray                 : mix(#fff, $gray, 50%);
-$lighter-gray               : mix(#fff, $gray, 90%);
+$gray                       : #8b949e;
+$dark-gray                  : #c9d1d9;
+$darker-gray                : #f0f6fc;
+$light-gray                 : #484f58;
+$lighter-gray               : #30363d;
 
-$body-color                 : #fff;
-$background-color           : #fff;
-$code-background-color      : #fafafa;
-$code-background-color-dark : $light-gray;
-$text-color                 : $dark-gray;
-$border-color               : $lighter-gray;
+$body-color                 : #0d1117;
+$background-color           : #0d1117;
+$code-background-color      : #161b22;
+$code-background-color-dark : #21262d;
+$text-color                 : #c9d1d9;
+$border-color               : #30363d;
 
-$primary-color              : #7a8288;
-$success-color              : #62c462;
-$warning-color              : #f89406;
-$danger-color               : #ee5f5b;
-$info-color                 : #52adc8;
+$primary-color              : #58a6ff;
+$success-color              : #3fb950;
+$warning-color              : #d29922;
+$danger-color               : #f85149;
+$info-color                 : #58a6ff;
 
 /* brands */
 $behance-color              : #1769FF;
@@ -102,11 +102,11 @@ $xing-color                 : #006567;
 
 
 /* links */
-$link-color                 : $info-color;
-$link-color-hover           : mix(#000, $link-color, 25%);
-$link-color-visited         : mix(#fff, $link-color, 25%);
-$masthead-link-color        : $primary-color;
-$masthead-link-color-hover  : mix(#000, $primary-color, 25%);
+$link-color                 : #58a6ff;
+$link-color-hover           : #79c0ff;
+$link-color-visited         : #a371f7;
+$masthead-link-color        : #c9d1d9;
+$masthead-link-color-hover  : #58a6ff;
 
 
 /*

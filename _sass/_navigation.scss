@@ -15,9 +15,9 @@
   padding-right: 2em;
   font-family: $sans-serif;
   -webkit-animation: intro 0.3s both;
-          animation: intro 0.3s both;
+  animation: intro 0.3s both;
   -webkit-animation-delay: 0.30s;
-          animation-delay: 0.30s;
+  animation-delay: 0.30s;
 
   @include breakpoint($large) {
     padding-left: 1em;
@@ -158,10 +158,10 @@
   }
 }
 
-.page__content + .pagination,
-.page__meta + .pagination,
-.page__share + .pagination,
-.page__comments + .pagination {
+.page__content+.pagination,
+.page__meta+.pagination,
+.page__share+.pagination,
+.page__comments+.pagination {
   margin-top: 2em;
   padding-top: 2em;
   border-top: 1px solid $border-color;
@@ -175,31 +175,42 @@
 .greedy-nav {
   position: relative;
   min-width: 250px;
-  background: $background-color;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  flex: 1;
 
   a {
     display: block;
     margin: 0 1rem;
     padding: 0.5rem 0;
-    color: $masthead-link-color;
+    color: var(--text-primary, $masthead-link-color);
     text-decoration: none;
 
     &:hover {
-      color: $masthead-link-color-hover;
+      color: var(--link-color, $masthead-link-color-hover);
     }
   }
 
-  button {
-    position: absolute;
+  // Hamburger menu button (for mobile/overflow)
+  >button:first-of-type {
+    position: relative;
     height: 2.5rem;
-    right: 0;
     padding: 0 0.5rem;
+    margin-left: 10px;
     border: 0;
     outline: none;
-    background-color: $primary-color;
-    color: #fff;
+    background-color: var(--bg-tertiary, $primary-color);
+    border: 1px solid var(--border-color, transparent);
+    border-radius: 6px;
+    color: var(--text-primary, #fff);
     cursor: pointer;
     z-index: 100;
+
+    // Hidden by default, shown by JS when items overflow
+    &.hidden {
+      display: none;
+    }
   }
 
   .visible-links {
@@ -239,14 +250,16 @@
         -webkit-transition: $global-transition;
         transition: $global-transition;
         -webkit-transform: scaleX(0);
-            -ms-transform: scaleX(0);
-                transform: scaleX(0); /* hide*/
+        -ms-transform: scaleX(0);
+        transform: scaleX(0);
+        /* hide*/
       }
 
       &:hover:before {
         -webkit-transform: scaleX(1);
-            -ms-transform: scaleX(1);
-                transform: scaleX(1); /* reveal*/
+        -ms-transform: scaleX(1);
+        transform: scaleX(1);
+        /* reveal*/
       }
     }
   }
@@ -254,13 +267,13 @@
   .hidden-links {
     position: absolute;
     top: 100%;
-    right: 0;
+    right: 50px;
     margin-top: 15px;
     padding: 5px;
-    border: 1px solid $border-color;
+    border: 1px solid var(--border-color, $border-color);
     border-radius: $border-radius;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(#000, 0.25);
+    background: var(--bg-secondary, #161b22);
+    box-shadow: 0 0 10px var(--shadow-color, rgba(#000, 0.25));
 
     a {
       margin: 0;
@@ -413,19 +426,19 @@
     }
   }
 
-  > li:last-child {
+  >li:last-child {
     a {
       border-bottom: none;
     }
   }
 
-  li ul > li a {
+  li ul>li a {
     padding-left: 2rem;
     font-weight: normal;
   }
 
   /* hide sub sub links on small screens*/
-  li > ul li {
+  li>ul li {
     display: none;
 
     @include breakpoint($medium) {

@@ -7,81 +7,294 @@ redirect_from:
   - /resume
 ---
 
-{% include base_path %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf_viewer.min.css">
 
-Education
-======
-* B.S. in Mechatronics & Robotics, UAS Technikum Vienna, 2016
-* M.S. in Mechatronics & Robotics with focus on Mobile Robotics, UAS Technikum Vienna, 2018
-* Ph.D in System Identification & Parameter Estimation for Autonomous , GitHub University, 2024 (expected)
+<style>
+.cv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.cv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #58a6ff, #a371f7);
+  color: #fff !important;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none !important;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(88, 166, 255, 0.3);
+}
+.cv-download:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(88, 166, 255, 0.4);
+}
+.cv-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cv-btn {
+  background: #21262d;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+.cv-btn:hover {
+  background: #30363d;
+  border-color: #58a6ff;
+  color: #58a6ff;
+}
+.page-info {
+  color: #8b949e;
+  font-size: 14px;
+}
+#pdf-container {
+  background: #161b22;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
+}
+.page-wrapper {
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  overflow: visible;
+}
+.page-wrapper canvas {
+  display: block;
+}
+.textLayer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  opacity: 0.25;
+  line-height: 1.0;
+  pointer-events: all;
+}
+.textLayer > span {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+.textLayer ::selection {
+  background: rgba(88, 166, 255, 0.5);
+}
+.link-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+.link-layer a {
+  position: absolute;
+  pointer-events: all;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s ease;
+}
+.link-layer a:hover {
+  background: rgba(88, 166, 255, 0.25) !important;
+}
+.loading {
+  color: #58a6ff;
+  font-size: 18px;
+  padding: 40px;
+}
+</style>
 
-Work experience
-======
-* Sep 2018 - Current: Researcher / Lecturer - UAS Technikum Vienna
-  * Collaboration on projects:
-    * Autonomous Land Systems
-      * Implementing/developing software modules for a Search and Rescue robot
-      * Containerization of software modules
-      * System maintenance
-    * Engineering Goes International (ENGINE)
-      * Software development
-    * IoCESST (Internationalization of the Curricula in Engineering, Environmental, Smart Cities and Sport Technologies)
-      * Development of the curriculum of the Mobile Robotics Lecture
-      * Lectures in Mobile Robotics
+<div class="cv-header">
+  <a href="/files/CV.pdf" download class="cv-download">
+    📄 Download CV
+  </a>
+  <div class="cv-controls">
+    <button class="cv-btn" id="prev-page">← Prev</button>
+    <span class="page-info"><span id="page-num">1</span> / <span id="page-count">-</span></span>
+    <button class="cv-btn" id="next-page">Next →</button>
+    <button class="cv-btn" id="zoom-out">−</button>
+    <button class="cv-btn" id="zoom-in">+</button>
+  </div>
+</div>
 
-* Oct 2022 - Mai 2023: Software Engineer - Ebe Mobility & Green Energy GmbH
-  * Implementation Self-Hosted Gitlab Instance
-    * Gitlab CI/CD based on self-hosted Docker container
-    * Gitlab - Openproject implementation
-  * Server monitoring and management
-  * Development of applications and solutions in the field of e-mobility, charging controllers and charging station
-  control
+<div id="pdf-container">
+  <div class="loading">Loading CV...</div>
+</div>
 
-* Dec 2019 - Sep 2022: University Assistant - Johannes Kepler University
-  * Lead on Last Mile Delivery Robot project
-    * 2D and 3D SLAM
-    * ROI Detection
-    * Path Planner
-  * Collaboration on Intelligent Car project
-    * Communication Layer car CAN-PC implementation
-    * Sensor mount design for various exteroceptive/proprioceptive sensors
-  * Course Exercises
-    * Python Programming for Economic and Business Analytics
-    * Introduction to software development with Python
-
-* May 2023 - Current: Platform Engineer - MIC Customs Solutions
-  * Jenkins CI/CD implementations
-  * Deploying and maintaining Azure Kubernetes clusters
-  * Developed a seamless local development environment using Tilt and Rancher Desktop
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const url = '/files/CV.pdf';
+  const container = document.getElementById('pdf-container');
+  const pageNumSpan = document.getElementById('page-num');
+  const pageCountSpan = document.getElementById('page-count');
   
-Skills
-======
-* Linux
-* Programming (<img src="https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white" height="25" alt="Bash"> <img src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white" height="25" alt="C"> <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" height="25" alt="C++"> <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" height="25" alt="Python">)
-* CI/CD
-  * ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
-  * ![GitLab CI](https://img.shields.io/badge/gitlab%20ci-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white)
-  * ![TravisCI](https://img.shields.io/badge/travis%20ci-%232B2F33.svg?style=for-the-badge&logo=travis&logoColor=white)
-  * ![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white)
-* Kubernetes (k8s)
-  * ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326CE5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
-  * ![Helm](https://img.shields.io/badge/helm-%230F1689.svg?style=for-the-badge&logo=helm&logoColor=white)
-  * ![CKAD](https://img.shields.io/badge/CKAD-%23326CE5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+  let pdfDoc = null;
+  let currentPage = 1;
+  let scale = 1.5;
+  const pageWrappers = [];
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  async function renderPage(pageNum, wrapper) {
+    const page = await pdfDoc.getPage(pageNum);
+    const viewport = page.getViewport({ scale: scale });
+    
+    wrapper.innerHTML = '';
+    wrapper.style.width = viewport.width + 'px';
+    wrapper.style.height = viewport.height + 'px';
+    
+    // Canvas layer
+    const canvas = document.createElement('canvas');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    wrapper.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    await page.render({
+      canvasContext: ctx,
+      viewport: viewport
+    }).promise;
+    
+    // Text layer
+    const textLayer = document.createElement('div');
+    textLayer.className = 'textLayer';
+    textLayer.style.width = viewport.width + 'px';
+    textLayer.style.height = viewport.height + 'px';
+    wrapper.appendChild(textLayer);
+    
+    const textContent = await page.getTextContent();
+    pdfjsLib.renderTextLayer({
+      textContent: textContent,
+      container: textLayer,
+      viewport: viewport,
+      textDivs: []
+    });
+    
+    // Link layer for clickable hyperlinks
+    const linkLayer = document.createElement('div');
+    linkLayer.className = 'link-layer';
+    wrapper.appendChild(linkLayer);
+    
+    const annotations = await page.getAnnotations();
+    console.log('Page', pageNum, 'annotations:', annotations);
+    
+    annotations.forEach(annotation => {
+      if (annotation.subtype === 'Link') {
+        const link = document.createElement('a');
+        
+        // Handle different link types
+        if (annotation.url) {
+          link.href = annotation.url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        } else if (annotation.dest) {
+          // Internal link - skip for now
+          return;
+        } else if (annotation.action && annotation.action.uri) {
+          link.href = annotation.action.uri;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        } else {
+          return;
+        }
+        
+        // Position the link
+        const rect = annotation.rect;
+        if (rect) {
+          const [x1, y1, x2, y2] = viewport.convertToViewportRectangle(rect);
+          
+          const left = Math.min(x1, x2);
+          const top = Math.min(y1, y2);
+          const width = Math.abs(x2 - x1);
+          const height = Math.abs(y2 - y1);
+          
+          link.style.left = left + 'px';
+          link.style.top = top + 'px';
+          link.style.width = width + 'px';
+          link.style.height = height + 'px';
+          
+          linkLayer.appendChild(link);
+        }
+      }
+    });
+  }
+
+  async function renderAllPages() {
+    container.innerHTML = '';
+    pageWrappers.length = 0;
+    
+    for (let i = 1; i <= pdfDoc.numPages; i++) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'page-wrapper';
+      container.appendChild(wrapper);
+      pageWrappers.push(wrapper);
+      await renderPage(i, wrapper);
+    }
+  }
+
+  async function init() {
+    try {
+      pdfDoc = await pdfjsLib.getDocument(url).promise;
+      pageCountSpan.textContent = pdfDoc.numPages;
+      await renderAllPages();
+    } catch (error) {
+      console.error('PDF load error:', error);
+      container.innerHTML = '<div class="loading">Error loading PDF. <a href="/files/CV.pdf" style="color: #58a6ff;">Download instead</a></div>';
+    }
+  }
+
+  document.getElementById('zoom-in').addEventListener('click', async () => {
+    scale += 0.25;
+    await renderAllPages();
+  });
+
+  document.getElementById('zoom-out').addEventListener('click', async () => {
+    if (scale > 0.5) {
+      scale -= 0.25;
+      await renderAllPages();
+    }
+  });
+
+  document.getElementById('prev-page').addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      pageNumSpan.textContent = currentPage;
+      pageWrappers[currentPage - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  document.getElementById('next-page').addEventListener('click', () => {
+    if (currentPage < pdfDoc.numPages) {
+      currentPage++;
+      pageNumSpan.textContent = currentPage;
+      pageWrappers[currentPage - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  init();
+});
+</script>

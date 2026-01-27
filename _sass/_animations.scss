@@ -1,21 +1,133 @@
 /* ==========================================================================
-   ANIMATIONS
+   ANIMATIONS - Fancy DevOps Theme
    ========================================================================== */
 
 @-webkit-keyframes intro {
   0% {
     opacity: 0;
+    transform: translateY(10px);
   }
+
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes intro {
   0% {
     opacity: 0;
+    transform: translateY(10px);
   }
+
   100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animated gradient for masthead accent */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Subtle pulse glow */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(88, 166, 255, 0.5), 0 0 40px rgba(163, 113, 247, 0.3);
+  }
+}
+
+/* Text shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Floating animation */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Icon spin for loading states */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Border glow animation */
+@keyframes border-glow {
+
+  0%,
+  100% {
+    border-color: rgba(88, 166, 255, 0.5);
+  }
+
+  50% {
+    border-color: rgba(163, 113, 247, 0.8);
+  }
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Scale bounce */
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1);
     opacity: 1;
   }
 }

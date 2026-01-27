@@ -4,12 +4,23 @@
 
 {% include seo.html %}
 
-<link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
+<link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}"
+  type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Theme initialization - runs before page renders to prevent flash -->
+<script>
+  (function () {
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = stored || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
@@ -17,5 +28,47 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="{{ base_path }}/assets/css/main.css">
+
+<!-- Theme CSS Variables -->
+<style>
+  :root {
+    /* Light mode colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f6f8fa;
+    --bg-tertiary: #eaeef2;
+    --text-primary: #1f2328;
+    --text-secondary: #424a53;
+    --text-muted: #656d76;
+    --border-color: #d0d7de;
+    --border-muted: #d8dee4;
+    --link-color: #0969da;
+    --link-hover: #0550ae;
+    --code-bg: #f6f8fa;
+    --header-bg: rgba(255, 255, 255, 0.97);
+    --shadow-color: rgba(31, 35, 40, 0.12);
+    --accent-gradient: linear-gradient(90deg, #0969da 0%, #8250df 50%, #1a7f37 100%);
+    --heading-gradient: linear-gradient(135deg, #0969da 0%, #8250df 50%, #6e40c9 100%);
+    --masthead-link: #1f2328;
+  }
+
+  [data-theme="dark"] {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --text-primary: #f0f6fc;
+    --text-secondary: #c9d1d9;
+    --text-muted: #8b949e;
+    --border-color: #30363d;
+    --border-muted: #21262d;
+    --link-color: #58a6ff;
+    --link-hover: #79c0ff;
+    --code-bg: #161b22;
+    --header-bg: rgba(22, 27, 34, 0.97);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --accent-gradient: linear-gradient(90deg, #58a6ff 0%, #a371f7 50%, #3fb950 100%);
+    --heading-gradient: linear-gradient(135deg, #f0f6fc 0%, #58a6ff 50%, #a371f7 100%);
+    --masthead-link: #f0f6fc;
+  }
+</style>
 
 <meta http-equiv="cleartype" content="on">
