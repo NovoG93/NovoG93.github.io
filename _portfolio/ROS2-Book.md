@@ -1,5 +1,6 @@
 ---
 title: "RCLPY: From Zero to Hero"
+date: 2026-01-27
 excerpt: "Your comprehensive, hands-on guide to mastering ROS 2 with Python. Learn to build robust modular robotic systems through practical examples and detailed explanations.<br/><img src='/images/rcl/Book_Cover_Full_page-0001.jpg'>"
 collection: portfolio
 header:

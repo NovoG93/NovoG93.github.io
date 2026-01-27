@@ -2,6 +2,7 @@
 title: "EnRicH 2019"
 excerpt: "European Robotics Hackathon 2019<br/><img src='/images/2019-EnRicH/Robot.jpeg'>"
 collection: portfolio
+date: 2024-01-14
 ---
 
 # Transformative Robotics: Our Milestone at EnRicH 2019
