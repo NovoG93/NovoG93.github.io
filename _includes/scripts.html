@@ -44,9 +44,12 @@
 
 <!-- Theme Toggle Script -->
 <script>
-  (function () {
+  document.addEventListener('DOMContentLoaded', function () {
     const toggle = document.getElementById('theme-toggle');
-    if (!toggle) return;
+    if (!toggle) {
+      console.warn('Theme toggle button not found');
+      return;
+    }
 
     function getTheme() {
       const stored = localStorage.getItem('theme');
@@ -73,17 +76,22 @@
     updateToggleIcon(getTheme());
 
     // Toggle on click
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       const current = document.documentElement.getAttribute('data-theme') || getTheme();
       const next = current === 'dark' ? 'light' : 'dark';
       setTheme(next);
+      console.log('Theme switched to:', next);
     });
 
     // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
       if (!localStorage.getItem('theme')) {
         setTheme(e.matches ? 'dark' : 'light');
       }
     });
-  })();
+
+    console.log('Theme toggle initialized');
+  });
 </script>
