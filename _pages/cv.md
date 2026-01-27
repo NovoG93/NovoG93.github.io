@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
     wrapper.style.width = viewport.width + 'px';
     wrapper.style.height = viewport.height + 'px';
     
-    // Canvas layer
+    /* Canvas layer */
     const canvas = document.createElement('canvas');
     canvas.height = viewport.height;
     canvas.width = viewport.width;
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
       viewport: viewport
     }).promise;
     
-    // Text layer
+    /* Text layer */
     const textLayer = document.createElement('div');
     textLayer.className = 'textLayer';
     textLayer.style.width = viewport.width + 'px';
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
       textDivs: []
     });
     
-    // Link layer for clickable hyperlinks
+    /* Link layer for clickable hyperlinks */
     const linkLayer = document.createElement('div');
     linkLayer.className = 'link-layer';
     wrapper.appendChild(linkLayer);
@@ -206,13 +206,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (annotation.subtype === 'Link') {
         const link = document.createElement('a');
         
-        // Handle different link types
+        /* Handle different link types */
         if (annotation.url) {
           link.href = annotation.url;
           link.target = '_blank';
           link.rel = 'noopener noreferrer';
         } else if (annotation.dest) {
-          // Internal link - skip for now
+          /* Internal link - skip for now */
           return;
         } else if (annotation.action && annotation.action.uri) {
           link.href = annotation.action.uri;
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
           return;
         }
         
-        // Position the link
+        /* Position the link */
         const rect = annotation.rect;
         if (rect) {
           const [x1, y1, x2, y2] = viewport.convertToViewportRectangle(rect);
