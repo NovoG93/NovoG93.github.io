@@ -86,6 +86,7 @@ graph LR
     style Start fill:#f9f,stroke:#333,stroke-width:2px
     style CP_Ready fill:#bfb,stroke:#333,stroke-width:2px
 ```
+
 After the backup I was ready to start the upgrade process. Since you should always jump only one minor version, and my cluster was running on `1.33.x`, I will first upgrade to `1.34.x`, and then repeat the process to reach `1.35.x`.
 
 The steps for a single upgrade are as follows:
