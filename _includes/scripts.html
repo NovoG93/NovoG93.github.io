@@ -72,10 +72,10 @@
       }
     }
 
-    // Initialize
+    /* Initialize */
     updateToggleIcon(getTheme());
 
-    // Toggle on click
+    /* Toggle on click */
     toggle.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -85,7 +85,7 @@
       console.log('Theme switched to:', next);
     });
 
-    // Listen for system theme changes
+    /* Listen for system theme changes */
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
       if (!localStorage.getItem('theme')) {
         setTheme(e.matches ? 'dark' : 'light');
